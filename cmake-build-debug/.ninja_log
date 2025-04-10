@@ -1,7 +1,0 @@
-# ninja log v6
-21	13626	7654804748170025	CMakeFiles/GateServer_CLion.dir/main.cpp.obj	28e79b9fcac0ac84
-42	13106	7654804748374255	CMakeFiles/GateServer_CLion.dir/LogicSystem.cpp.obj	a2fa29a6f9db1247
-29	13934	7654804748253160	CMakeFiles/GateServer_CLion.dir/CServer.cpp.obj	5d287ed5fedcf412
-37	18261	7654804748324335	CMakeFiles/GateServer_CLion.dir/HttpConnection.cpp.obj	21ece9a3b53b05b9
-3	267	7656470595470235	build.ninja	4359875d4215776
-18261	25166	7654804930567108	GateServer_CLion.exe	d6579ef715f66b06

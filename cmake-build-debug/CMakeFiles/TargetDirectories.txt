@@ -1,3 +1,0 @@
-D:/project/GateServer_CLion/cmake-build-debug/CMakeFiles/GateServer_CLion.dir
-D:/project/GateServer_CLion/cmake-build-debug/CMakeFiles/edit_cache.dir
-D:/project/GateServer_CLion/cmake-build-debug/CMakeFiles/rebuild_cache.dir
