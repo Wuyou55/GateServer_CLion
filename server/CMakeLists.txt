@@ -1,6 +1,9 @@
 find_package(Boost REQUIRED)
 find_package(jsoncpp REQUIRED)
 
+add_compile_options("-Wl,--stack,16777216")  # 设置堆栈大小为 16MB
+add_compile_options("-O1")  # 启用基本优化
+
 set(SOURCES
         src/main.cpp
         src/Singleton.h
@@ -13,6 +16,8 @@ set(SOURCES
         src/LogicSystem.h
         src/VarifyGrpcClient.cpp
         src/VarifyGrpcClient.h
+        src/ConfigMgr.cpp
+        src/ConfigMgr.h
 )
 
 source_group("server/src" ROOT ${CMAKE_SOURCE_DIR} FILES ${SOURCE_FILES})
@@ -27,4 +32,10 @@ target_link_libraries(server PRIVATE
         mswsock
         advapi32
         JsonCpp::JsonCpp
+)
+
+configure_file(
+        ${CMAKE_CURRENT_SOURCE_DIR}/config.ini
+        ${CMAKE_CURRENT_BINARY_DIR}/config.ini
+        COPYONLY
 )
