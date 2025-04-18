@@ -4,7 +4,7 @@
 
 #include "LogicSystem.h"
 #include "HttpConnection.h"
-#include "VarifyGrpcClient.h"
+#include "VerifyGrpcClient.h"
 
 bool LogicSystem::HandleGet(const std::string& path, const std::shared_ptr<HttpConnection>& con) {
     if (!get_handlers.contains(path)) {
@@ -61,11 +61,11 @@ LogicSystem::LogicSystem() {
         }
 
         // 将json数据加载到root中
-        auto email = root["email"].asString();
-        GetVarifyRsp rsp =  VarifyGrpcClient::GetInstance()->GetVarifyCode(email);
+        auto email = src_root["email"].asString();
+        GetVerifyRsp rsp =  VerifyGrpcClient::GetInstance()->GetVerifyCode(email);
         std::cout << "email is " << email << std::endl;
         root["error"] = rsp.error();
-        root["email"] = src_root["email"];
+        root["email"] = email;
         std::string json_str = root.toStyledString();
         ostream(connection->response_.body()) << json_str;
         return true;

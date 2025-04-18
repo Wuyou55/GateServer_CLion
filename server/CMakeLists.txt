@@ -14,8 +14,8 @@ set(SOURCES
         src/HttpConnection.cpp
         src/LogicSystem.cpp
         src/LogicSystem.h
-        src/VarifyGrpcClient.cpp
-        src/VarifyGrpcClient.h
+        src/VerifyGrpcClient.cpp
+        src/VerifyGrpcClient.h
         src/ConfigMgr.cpp
         src/ConfigMgr.h
 )

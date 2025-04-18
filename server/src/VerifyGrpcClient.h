@@ -13,19 +13,19 @@ using grpc::Channel;
 using grpc::Status;
 using grpc::ClientContext;
 
-using message::VarifyService;
-using message::GetVarifyReq;
-using message::GetVarifyRsp;
+using message::VerifyService;
+using message::GetVerifyReq;
+using message::GetVerifyRsp;
 
-class VarifyGrpcClient : public Singleton<VarifyGrpcClient>
+class VerifyGrpcClient : public Singleton<VerifyGrpcClient>
 {
-    friend class Singleton<VarifyGrpcClient>;
+    friend class Singleton<VerifyGrpcClient>;
 
 public:
-    GetVarifyRsp GetVarifyCode(std::string email) const;
+    GetVerifyRsp GetVerifyCode(std::string email) const;
 private:
-    VarifyGrpcClient();
-    std::unique_ptr<VarifyService::Stub> stub_;
+    VerifyGrpcClient();
+    std::unique_ptr<VerifyService::Stub> stub_;
 };
 
 

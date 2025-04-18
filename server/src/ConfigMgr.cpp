@@ -32,7 +32,6 @@ ConfigMgr::ConfigMgr()
 {
     std::filesystem::path current_path = std::filesystem::current_path();
     std::filesystem::path config_path = current_path / "config.ini";
-    std::cout << "config_file_directory: " << config_path << std::endl;
 
     boost::property_tree::ptree ptree;
     boost::property_tree::read_ini(config_path.string(), ptree);
