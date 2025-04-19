@@ -18,6 +18,8 @@ set(SOURCES
         src/VerifyGrpcClient.h
         src/ConfigMgr.cpp
         src/ConfigMgr.h
+        src/AsioIOServicePool.cpp
+        src/AsioIOServicePool.h
 )
 
 source_group("server/src" ROOT ${CMAKE_SOURCE_DIR} FILES ${SOURCE_FILES})

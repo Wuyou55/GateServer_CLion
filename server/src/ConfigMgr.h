@@ -17,13 +17,13 @@ struct SectionInfo
     SectionInfo& operator=(const SectionInfo &src);
 
     std::map<std::string, std::string> sections_datas_;
-    std::string operator[](std::string key);
+    std::string operator[](const std::string& key);
 };
 
 class ConfigMgr
 {
 public:
-    ConfigMgr();
+    static ConfigMgr& Instance();
     ~ConfigMgr();
 
     ConfigMgr(const ConfigMgr &src);
@@ -31,6 +31,7 @@ public:
 
     SectionInfo operator[](const std::string& key);
 private:
+    ConfigMgr();
     std::map<std::string, SectionInfo> config_map_;
 };
 

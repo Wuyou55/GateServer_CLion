@@ -8,20 +8,16 @@
 #include "Const.h"
 
 class HttpConnection : public std::enable_shared_from_this<HttpConnection> {
-public:
     friend class LogicSystem;
-
-    explicit HttpConnection(tcp::socket socket);
-
+public:
+    explicit HttpConnection(boost::asio::io_context& ioc);
     void Start();
+    tcp::socket& GetSocket();
 
 private:
     void CheckDeadline();
-
     void WriteResponse();
-
     void HandleRequest();
-
     void PreParseGetParam();
 
     tcp::socket socket_;

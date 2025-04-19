@@ -19,13 +19,19 @@ SectionInfo& SectionInfo::operator=(const SectionInfo& src)
     return *this;
 }
 
-std::string SectionInfo::operator[](std::string key)
+std::string SectionInfo::operator[](const std::string& key)
 {
     if (!sections_datas_.contains(key))
     {
         return "";
     }
     return sections_datas_[key];
+}
+
+ConfigMgr& ConfigMgr::Instance()
+{
+    static ConfigMgr instance;
+    return instance;
 }
 
 ConfigMgr::ConfigMgr()

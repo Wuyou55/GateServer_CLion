@@ -2,7 +2,7 @@
 #include "CServer.h"
 
 int main() {
-    ConfigMgr g_config_mgr;
+    auto& g_config_mgr = ConfigMgr::Instance();
     const std::string gate_port_str = g_config_mgr["GateServer"]["Port"];
     const unsigned short gate_port = atoi(gate_port_str.c_str());
     std::cout << "gate_port is " << gate_port << std::endl;
