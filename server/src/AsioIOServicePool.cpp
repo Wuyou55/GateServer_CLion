@@ -5,11 +5,11 @@
 #include "AsioIOServicePool.h"
 
 AsioIOServicePool::AsioIOServicePool(std::size_t size_)
-    : ioServices_(size_), workGuards_(size_), next_IOService_(size_)
+    : ioServices_(size_), works_(size_), next_IOService_(0)
 {
     for (std::size_t i = 0; i < size_; ++i)
     {
-        workGuards_[i] = std::make_unique<Work>(make_work_guard(ioServices_[i]));
+        works_[i] = std::make_unique<Work>(ioServices_[i].get_executor());
     }
     // 遍历多个ioservice，创建多个线程，每个线程内部启动ioservice
     for (auto& ioService : ioServices_)
@@ -27,20 +27,20 @@ AsioIOServicePool::~AsioIOServicePool()
     std::cout << "AsioIOServicePool destruct" << std::endl;
 }
 
-AsioIOServicePool::IOService& AsioIOServicePool::GetIOService()
+boost::asio::io_context& AsioIOServicePool::GetIOService()
 {
-    auto& service = ioServices_[next_IOService_++];
+    const std::size_t index = next_IOService_++;
     if (next_IOService_ == ioServices_.size())
     {
         next_IOService_ = 0;
     }
-    return service;
+    return ioServices_[index];
 }
 
 void AsioIOServicePool::Stop()
 {
     // 先取消所有 work_guard，让 io_context 能自动退出 run()
-    for (const auto& guard : workGuards_)
+    for (const auto& guard : works_)
     {
         guard->reset(); // 新写法，释放 keep-alive
     }
