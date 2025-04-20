@@ -1,5 +1,6 @@
 find_package(Boost REQUIRED)
 find_package(jsoncpp REQUIRED)
+find_package(hiredis REQUIRED)
 
 add_compile_options("-Wl,--stack,16777216")  # 设置堆栈大小为 16MB
 add_compile_options("-O1")  # 启用基本优化
@@ -20,6 +21,10 @@ set(SOURCES
         src/ConfigMgr.h
         src/AsioIOServicePool.cpp
         src/AsioIOServicePool.h
+        src/RedisMgr.cpp
+        src/RedisMgr.h
+        src/RedisConPool.cpp
+        src/RedisConPool.h
 )
 
 source_group("server/src" ROOT ${CMAKE_SOURCE_DIR} FILES ${SOURCE_FILES})
@@ -34,6 +39,7 @@ target_link_libraries(server PRIVATE
         mswsock
         advapi32
         JsonCpp::JsonCpp
+        hiredis::hiredis
 )
 
 configure_file(
